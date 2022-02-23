@@ -16,8 +16,23 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
-# We begin with Parts 3, 6, and 7, but uncomment the code in each of the other parts and save to see how the Streamlit application updates in your browser.
+import json
+import psycopg2 #postgres python adapter
 
+%matplotlib inline
+
+connection = psycopg2.connect(dbname="edgar_db", host="edgar.c57fovsijcwz.us-east-1.rds.amazonaws.com", port="5432", user="postgres", password="#Metis4life")
+cursor = connection.cursor()
+cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = 'Apple Inc.'")
+results = cursor.fetchall()
+results
+
+df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','val','accn','fy','fp','form','filed'])
+
+ts = df[['filed','val']].set_index('filed')
+ts.plot()
+
+df
 
 ## PART 1 - Agenda
 
