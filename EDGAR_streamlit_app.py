@@ -19,7 +19,6 @@ import streamlit as st
 import json
 import psycopg2 #postgres python adapter
 
-%matplotlib inline
 
 connection = psycopg2.connect(dbname="edgar_db", host="edgar.c57fovsijcwz.us-east-1.rds.amazonaws.com", port="5432", user="postgres", password="#Metis4life")
 cursor = connection.cursor()
