@@ -37,8 +37,8 @@ quarterly_df['period'] = df['period'].dt.days.astype('int16')
 
 # Quarterly EPS Table
 
-st.write(""" ## {0} quarterly diluted earnings per share (EPS) 'val' column is the diluted EPS (in USD/share)""".format(option))
-
+st.write(""" ## {0} - quarterly diluted Earnings per Share (EPS)
+'val' column is the diluted EPS (in USD/share)""".format(option))
 
 # st.write(
 # '''
@@ -50,11 +50,13 @@ st.dataframe(quarterly_df)
 
 # plot time series graph of quarterly diluted EPS
 
-st.write(
-'''
-### Time Series graph of quarterly diluted EPS
-'''
-)
+st.write(""" ## {0} - Time Series graph of quarterly diluted EPS""".format(option))
+
+# st.write(
+# '''
+# ### Time Series graph of quarterly diluted EPS
+# '''
+# )
 
 ts3 = quarterly_df[['enddate','val']] # actual enddate instead of when it was accounced/filed
 fig, ax = plt.subplots()
