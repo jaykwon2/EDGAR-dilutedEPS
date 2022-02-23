@@ -10,6 +10,19 @@ st.write('''
 
 connection = psycopg2.connect(dbname="edgar_db", host="edgar.c57fovsijcwz.us-east-1.rds.amazonaws.com", port="5432", user="postgres", password="#Metis4life")
 cursor = connection.cursor()
+
+cursor.execute("SELECT DISTINCT(companyname) FROM earningspersharediluted WHERE form = '10-Q'")
+results_company = cursor.fetchall()
+company_list = list()
+for comp in results_company:
+    company_list.append(comp[0])
+company_list
+
+option = st.selectbox(
+     'How would you like to be contacted?',
+     company_list)
+st.write('You selected:', option)
+
 cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = 'Apple Inc.'")
 results = cursor.fetchall()
 
