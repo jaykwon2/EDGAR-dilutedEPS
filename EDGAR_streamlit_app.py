@@ -36,19 +36,16 @@ st.write(
 
 ts2 = df[['filed','val']]
 
-plt.figure(figsize=(15,5))
-plt.plot(ts2['filed'], ts2['val'])
-plt.ylabel('diluted EPS (USD/share)')
-plt.xlabel('Date')
-plt.xticks(rotation=45)
-plt.title('Quarterly diluted EPS for Apple')
-st.pyplot(fig)
-
+# plt.figure(figsize=(15,5))
+# plt.plot(ts2['filed'], ts2['val'])
+# plt.ylabel('diluted EPS (USD/share)')
+# plt.xlabel('Date')
+# plt.xticks(rotation=45)
+# plt.title('Quarterly diluted EPS for Apple')
 
 fig, ax = plt.subplots()
-
-ax.hist(data['PRICE'])
-ax.set_title('Distribution of House Prices in $100,000s')
+ax.set(xlabel='Date', ylabel='diluted EPS (USD/share)',
+       title='Quarterly diluted EPS for Apple');
 
 show_graph = st.checkbox('Show Graph', value=True)
 
