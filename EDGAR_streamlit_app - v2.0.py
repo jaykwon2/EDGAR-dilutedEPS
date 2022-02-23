@@ -1,3 +1,17 @@
+"""
+testing
+Streamlit Housing App Demo
+    
+Make sure to install Streamlit with `pip install streamlit`.
+
+Run `streamlit hello` to get started!
+
+To run this app:
+
+1. cd into this directory
+2. Run `streamlit run streamlit_app.py`
+"""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
@@ -5,25 +19,20 @@ import streamlit as st
 import json
 import psycopg2 #postgres python adapter
 
+%matplotlib inline
 
 connection = psycopg2.connect(dbname="edgar_db", host="edgar.c57fovsijcwz.us-east-1.rds.amazonaws.com", port="5432", user="postgres", password="#Metis4life")
 cursor = connection.cursor()
 cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = 'Apple Inc.'")
 results = cursor.fetchall()
+results
 
 df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','val','accn','fy','fp','form','filed'])
 
+ts = df[['filed','val']].set_index('filed')
+ts.plot()
+
 df
-
-ts2 = df[['filed','val']]
-
-plt.figure(figsize=(15,5))
-plt.plot(ts2['filed'], ts2['val'])
-plt.ylabel('diluted EPS (USD/share)')
-plt.xlabel('Date')
-plt.xticks(rotation=45)
-plt.title('Quarterly diluted EPS for Apple')
-
 
 ## PART 1 - Agenda
 
