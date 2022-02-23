@@ -37,11 +37,14 @@ quarterly_df['period'] = df['period'].dt.days.astype('int16')
 
 # Quarterly EPS Table
 
-st.write(
-'''
-## Quarterly diluted Earnings per Share (EPS)
-'val' column is the diluted EPS (in USD/share)
-''')
+st.write(""" ## {0} quarterly diluted earnings per share (EPS) 'val' column is the diluted EPS (in USD/share)""".format(option))
+
+
+# st.write(
+# '''
+# ## Quarterly diluted Earnings per Share (EPS)
+# 'val' column is the diluted EPS (in USD/share)
+# ''')
 
 st.dataframe(quarterly_df)
 
@@ -63,4 +66,3 @@ show_graph = st.checkbox('Show Graph', value=True)
 
 if show_graph:
     st.pyplot(fig)
-    
