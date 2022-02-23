@@ -19,11 +19,12 @@ for comp in results_company:
 company_list
 
 option = st.selectbox(
-     'How would you like to be contacted?',
+     'Select an SP500 Company from the list below:',
      company_list)
 st.write('You selected:', option)
 
-cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = 'Apple Inc.'")
+cursor.execute(SELECT * FROM earningsshareperdiluted WHERE form = '10-Q' AND companyname = '%s', option)
+# cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = option")
 results = cursor.fetchall()
 
 df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','val','accn','fy','fp','form','filed'])
