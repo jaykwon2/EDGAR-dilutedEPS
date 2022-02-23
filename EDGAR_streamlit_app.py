@@ -24,7 +24,6 @@ connection = psycopg2.connect(dbname="edgar_db", host="edgar.c57fovsijcwz.us-eas
 cursor = connection.cursor()
 cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = 'Apple Inc.'")
 results = cursor.fetchall()
-results
 
 df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','val','accn','fy','fp','form','filed'])
 
