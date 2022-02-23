@@ -23,7 +23,7 @@ option = st.selectbox(
      company_list)
 st.write('You selected:', option)
 
-cursor.execute(SELECT * FROM earningsshareperdiluted WHERE form = '10-Q' AND companyname = '%s', option)
+cursor.execute("SELECT * FROM earningsshareperdiluted WHERE form = '10-Q' AND companyname = %s", option)
 # cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND companyname = option")
 results = cursor.fetchall()
 
