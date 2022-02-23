@@ -1,13 +1,12 @@
-st.write('''
-# Quarterly diluted Earnings per Share
-''')
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import json
 import psycopg2 #postgres python adapter
 
+st.write('''
+# Quarterly diluted Earnings per Share
+''')
 
 connection = psycopg2.connect(dbname="edgar_db", host="edgar.c57fovsijcwz.us-east-1.rds.amazonaws.com", port="5432", user="postgres", password="#Metis4life")
 cursor = connection.cursor()
