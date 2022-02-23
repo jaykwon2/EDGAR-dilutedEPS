@@ -14,6 +14,9 @@ cursor.execute("SELECT * FROM earningspersharediluted WHERE form = '10-Q' AND co
 results = cursor.fetchall()
 
 df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','val','accn','fy','fp','form','filed'])
+df['period'] = (df['enddate'] - df['startdate'])
+quarterly_df = df.copy()
+quarterly_df = quarterly_df[quarterly_df['period'].dt.days < 100]
 
 # Apple's quarterly EPS Table
 
@@ -23,7 +26,7 @@ st.write(
 'val' column is the diluted EPS (in USD/share)
 ''')
 
-st.dataframe(df)
+st.dataframe(quarterly_df)
 
 
 # plot time series graph of Apple's quarterly diluted EPS
@@ -34,19 +37,11 @@ st.write(
 '''
 )
 
-ts2 = df[['filed','val']]
-
-# plt.figure(figsize=(15,5))
-# plt.plot(ts2['filed'], ts2['val'])
-# plt.ylabel('diluted EPS (USD/share)')
-# plt.xlabel('Date')
-# plt.xticks(rotation=45)
-# plt.title('Quarterly diluted EPS for Apple')
-
+ts3 = quarterly_df[['enddate','val']] # actual enddate instead of when it was accounced/filed
 fig, ax = plt.subplots()
-ax.plot(ts2['filed'], ts2['val'])
+ax.plot(ts3['enddate'], ts3['val'])
 ax.set(xlabel='Date', ylabel='diluted EPS (USD/share)',
-       title='Quarterly diluted EPS for Apple');
+       title='Quarterly diluted EPS for Apple')
 
 show_graph = st.checkbox('Show Graph', value=True)
 
