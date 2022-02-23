@@ -17,6 +17,7 @@ df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','va
 df['period'] = (df['enddate'] - df['startdate'])
 quarterly_df = df.copy()
 quarterly_df = quarterly_df[quarterly_df['period'].dt.days < 100]
+quarterly_df['period'] = df['period'].dt.days.astype('int16')
 
 # Apple's quarterly EPS Table
 
