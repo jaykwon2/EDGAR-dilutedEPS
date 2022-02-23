@@ -44,6 +44,7 @@ ts2 = df[['filed','val']]
 # plt.title('Quarterly diluted EPS for Apple')
 
 fig, ax = plt.subplots()
+ax.plot(ts2['filed'], ts2['val'])
 ax.set(xlabel='Date', ylabel='diluted EPS (USD/share)',
        title='Quarterly diluted EPS for Apple');
 
