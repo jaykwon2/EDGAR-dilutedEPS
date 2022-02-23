@@ -35,22 +35,21 @@ quarterly_df = df.copy()
 quarterly_df = quarterly_df[quarterly_df['period'].dt.days < 100]
 quarterly_df['period'] = df['period'].dt.days.astype('int16')
 
-# Apple's quarterly EPS Table
+# Quarterly EPS Table
 
 st.write(
 '''
-## Apple's quarterly diluted earnings per share (EPS)
+## Quarterly diluted Earnings per Share (EPS)
 'val' column is the diluted EPS (in USD/share)
 ''')
 
 st.dataframe(quarterly_df)
 
-
-# plot time series graph of Apple's quarterly diluted EPS
+# plot time series graph of quarterly diluted EPS
 
 st.write(
 '''
-### Time Series graph of Apple's quarterly diluted EPS
+### Time Series graph of quarterly diluted EPS
 '''
 )
 
