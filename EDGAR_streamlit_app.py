@@ -50,19 +50,19 @@ st.dataframe(quarterly_df)
 
 # plot time series graph of quarterly diluted EPS
 
-st.write(""" ## {0} - Time Series graph of quarterly diluted EPS""".format(option))
+# st.write(""" ## {0} - Time Series graph of quarterly diluted EPS""".format(option))
 
-# st.write(
-# '''
-# ### Time Series graph of quarterly diluted EPS
-# '''
-# )
+st.write(
+'''
+#### Time Series graph of quarterly diluted EPS
+'''
+)
 
 ts3 = quarterly_df[['enddate','val']] # actual enddate instead of when it was accounced/filed
 fig, ax = plt.subplots()
 ax.plot(ts3['enddate'], ts3['val'])
 ax.set(xlabel='Date', ylabel='diluted EPS (USD/share)',
-       title='Quarterly diluted EPS for Apple')
+       title='Quarterly diluted EPS')
 
 show_graph = st.checkbox('Show Graph', value=True)
 
