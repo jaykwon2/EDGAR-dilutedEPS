@@ -1,7 +1,10 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-import streamlit as st
+st.write('''
+# Quarterly diluted Earnings per Share
+''')
 
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 import json
 import psycopg2 #postgres python adapter
 
@@ -13,7 +16,24 @@ results = cursor.fetchall()
 
 df = pd.DataFrame(results, columns=['id','companyname','startdate','enddate','val','accn','fy','fp','form','filed'])
 
-df
+# Apple's quarterly EPS Table
+
+st.write(
+'''
+## Apple's quarterly diluted earnings per share (EPS)
+'val' column is the diluted EPS (in USD/share)
+''')
+
+st.dataframe(df)
+
+
+# plot time series graph of Apple's quarterly diluted EPS
+
+st.write(
+'''
+### Time Series graph of Apple's quarterly diluted EPS
+'''
+)
 
 ts2 = df[['filed','val']]
 
@@ -23,7 +43,18 @@ plt.ylabel('diluted EPS (USD/share)')
 plt.xlabel('Date')
 plt.xticks(rotation=45)
 plt.title('Quarterly diluted EPS for Apple')
+st.pyplot(fig)
 
+
+fig, ax = plt.subplots()
+
+ax.hist(data['PRICE'])
+ax.set_title('Distribution of House Prices in $100,000s')
+
+show_graph = st.checkbox('Show Graph', value=True)
+
+if show_graph:
+    st.pyplot(fig)
 
 ## PART 1 - Agenda
 
